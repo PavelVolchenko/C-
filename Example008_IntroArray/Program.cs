@@ -4,7 +4,7 @@
     int index = 0;
     while (index < size)
     {
-        array[index] = new Random().Next(-100, 101);
+        array[index] = new Random().Next(1, 101);
         index++;
     }
 }
@@ -18,27 +18,35 @@ void PrintArray(int[] array)
         Console.Write($"{array[index]} ");
         index++;
     }
+    Console.WriteLine();
 }
 
-int Max(int[] array)
+void MinMax(int[] array)
 {
     int index = 1;
     int size = array.Length;
-    int max = 0;
-    while (index < size)
+    int max = array[0], min = array[0],
+    maxIndex = 0, minIndex = 0;
+    while(index < size)
     {
         if(array[index] > max)
         {
-            max = array[index];
+            max = array[index]; 
+            maxIndex = index;
+        }
+        if(array[index] < min)
+        {
+            min = array[index];
+            minIndex = index;
         }
         index++;
     }
-    return max;
+    Console.WriteLine($"Минимальное число: {min} индекс {minIndex}");
+    Console.WriteLine($"Максимальное число: {max} индекс {maxIndex}");
 }
 
 int[] arr = new int[20];
 
 FillArray(arr);
 PrintArray(arr);
-Console.WriteLine();
-Console.Write($"Максимальное число: {Max(arr)}");
+MinMax(arr);
